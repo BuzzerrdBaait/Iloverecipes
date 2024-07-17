@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="book-list">
     {% for book in books %}
-        <div class="book-item">
-            <img src="/media/{{ book.cover_photo.name }}" alt="{{ book.title }}"> 
-  
+    <div class="card m-2" style="width: 18rem;">
+        <!-- Card image -->
+        {% if book.cover_photo %}
+            <img src="/media/{{ book.cover_photo.name }}" class="card-img-top" alt="{{ book.title }}">
+        {% else %}
+            <img src="{% static 'no-image.jpg' %}" class="card-img-top" alt="Default Image">
+        {% endif %}
+
+        <!-- Card body -->
+        <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <p class="card-text">{{ book.description|default:"No description provided." }}</p>
+            <a href="{% url 'book_detail' book.id %}" class="btn btn-primary">View Details</a>
         </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
+

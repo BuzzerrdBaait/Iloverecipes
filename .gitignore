@@ -1,4 +1,11 @@
 .#ignore environment variables
-
-
 *.mov
+.env/
+.env
+set_env.ps1
+__pycache__/
+*.py[cod]
+migrations/
+recipes/migrations/
+**/migrations/*.py
+!**/migrations/__init__.py
